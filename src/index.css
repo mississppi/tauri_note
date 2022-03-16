@@ -31,4 +31,9 @@ code {
 
 .post{
   list-style: none;
+  height: 40px;
+}
+
+.post .post_title{
+  padding-left: 1em;
 }

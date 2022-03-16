@@ -9,7 +9,9 @@ function App() {
       <div className="side">
         {
           sample_post.map(v => (
-            <li className='post'>{v}</li>
+            <li className='post'>
+              <span className='post_title'>{v}</span>
+            </li>
           ))
         }
       </div>
