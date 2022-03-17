@@ -32,8 +32,10 @@ code {
 .post{
   list-style: none;
   height: 40px;
+  font-family: "NotoSansCJKjp";
 }
 
 .post .post_title{
   padding-left: 1em;
+  font-family: 'NotoSansCJKjp';
 }
