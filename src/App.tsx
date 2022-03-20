@@ -1,5 +1,7 @@
+import React from "react";
 import './App.css';
 import './font/fonts.css';
+import TextEditor from "./components/TextEditor";
 
 function App() {
   const sample_post = get_posts();
@@ -15,7 +17,7 @@ function App() {
         }
       </div>
       <div className="main">
-        <p>fugafuga</p>
+        <TextEditor />
       </div>
     </div>);
 }
