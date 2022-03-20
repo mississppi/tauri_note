@@ -17,8 +17,7 @@ function App() {
       <div className="main">
         <p>fugafuga</p>
       </div>
-    </div>
-  );
+    </div>);
 }
 
 function get_posts(){
