@@ -26,6 +26,10 @@ function get_posts(){
   const posts = [
     "メモ",
     "Work",
+    "Work",
+    "Work",
+    "Work",
+    "Work",
   ];
   return posts;
 }
