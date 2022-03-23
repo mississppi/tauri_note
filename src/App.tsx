@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 import './font/fonts.css';
 import TextEditor from "./components/TextEditor";
+import Title from "./components/Title";
 
 function App() {
   const sample_post = get_posts();
@@ -10,14 +11,17 @@ function App() {
       <div className="side">
         {
           sample_post.map(v => (
-            <li className='post'>
+            <li className='post' onClick={handleCheck}>
               <span className='post_title'>{v}</span>
             </li>
           ))
         }
       </div>
       <div className="main">
-        <TextEditor />
+        <div className="main_wrapper">
+          <Title />
+          <TextEditor />
+        </div>
       </div>
     </div>);
 }
@@ -32,6 +36,10 @@ function get_posts(){
     "Work",
   ];
   return posts;
+}
+
+function handleCheck(){
+  console.log("clicked!!!");
 }
 
 export default App;

@@ -1,42 +1,42 @@
-import React from "react";
-import { 
-    Editor, 
-    EditorState,
+import React, { SyntheticEvent, useState } from "react";
+import {
+    Editor as DraftEditor, 
+    EditorState, 
     RichUtils,
-    AtomicBlockUtils,
-    DraftEditorCommand,
-    convertToRaw,
-    convertFromRaw
+    getDefaultKeyBinding,
+    KeyBindingUtil
 } from "draft-js";
+const {hasCommandModifier} = KeyBindingUtil;
 
-function TextEditor() {
-    const initialState = EditorState.createEmpty();
-    const [editorState, setEditorState] = React.useState<EditorState>(initialState);
-    const handleKeyCommand = (command: DraftEditorCommand) => {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
-        if (newState) {
-          setEditorState(newState);
+function keyBindingFn(e: React.KeyboardEvent<{}>): string | null{
+    if (e.keyCode === 83 /* `S` key */ && hasCommandModifier(e)) {
+        return 'save';
+    }
+    return getDefaultKeyBinding(e);
+}
+
+const TextEditor: React.FC = () => {
+    const [editorState, setEditorState] = useState(() => 
+        EditorState.createEmpty()
+    );
+    const handleKeyCommand = (command: string, editorState: EditorState) => {
+        if (command === 'save') {
+          console.log("test");
           return "handled";
         }
         return "not-handled";
     };
     return (
-        <div className="main_wrapper">
-            <div className="titleArea">
-                <input type="text" className="titleInput"/>
-                <span className="focus_line"></span>
-            </div>
-            <div className="contentArea">
-                <div className="texteditor">
-                    <Editor 
-                        editorState={editorState}
-                        onChange={setEditorState}
-                        handleKeyCommand={handleKeyCommand}
-                    />
-                </div>
+        <div className="contentArea">
+            <div className="texteditor">
+                <DraftEditor 
+                    editorState={editorState}
+                    onChange={setEditorState}
+                    handleKeyCommand={handleKeyCommand}
+                    keyBindingFn={keyBindingFn}
+                />
             </div>
         </div>
-        
     );
 }
 
